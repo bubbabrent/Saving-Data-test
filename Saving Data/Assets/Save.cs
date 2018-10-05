@@ -20,7 +20,9 @@ public class Save : MonoBehaviour {
 		if (p.gameObject.tag == "Player") 
 		{
 			//save game
-			PlayerPrefs.SetInt("health", es.GetComponent<GameManager>().health);
+			//PlayerPrefs.SetInt("health", es.GetComponent<GameManager>().health);
+			GameManager.manage.Save();
+			//Debug.Log ("Saving");
 		}
 	}
 
