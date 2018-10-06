@@ -19,12 +19,14 @@ public class GameManager : MonoBehaviour
 		if (manage == null) 
 		{
 			DontDestroyOnLoad (gameObject);
+            Debug.Log("manage was null");
 			manage = this;
 			health = 100;
 		} 
 		else if (manage != this) 
 		{
-			Destroy (gameObject);
+            Debug.Log("manage exists");
+            Destroy (gameObject);
 		}
 	}
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
 
 	void Start ()
 	{
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 
 		//health = 100;
 		//PlayerPrefs.GetInt("health");
@@ -41,7 +43,11 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		healthText.text = health.ToString();
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+
+
+        healthText.text = health.ToString();
 
 		if (Input.GetKey (KeyCode.H))
 			Debug.Log (health);
@@ -55,7 +61,7 @@ public class GameManager : MonoBehaviour
 	public void Save()
 	{
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.data");
+		FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 
 		PlayerData data = new PlayerData ();
 		data.health = health;
@@ -70,7 +76,7 @@ public class GameManager : MonoBehaviour
 		if (File.Exists (Application.persistentDataPath + "/playerInfo.dat")) 
 		{
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.data", FileMode.Open);
+			FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
 			PlayerData data = (PlayerData)bf.Deserialize (file);
 			file.Close ();
 
