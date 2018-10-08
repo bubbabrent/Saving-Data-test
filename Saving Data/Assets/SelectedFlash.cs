@@ -32,13 +32,17 @@ public class SelectedFlash : MonoBehaviour
             StartCoroutine(FlashObject());
         }
 
-        if(selectedObject.name == "HealthPack" && Input.GetKey(KeyCode.Mouse0))
-        {
-            GameManager.manage.health += 50;
+	
+
+		//If the current selected object is HealthPack prefab and the mouse is clicked
+        if(selectedObject.name == "HealthPack" && Input.GetKey(KeyCode.Mouse0)) //Use THIS over and over for different items that are storable in the inventory system.
+		{
+			//All that needs to change for each one in this if statement is the name of each of them. 
+            GameManager.manage.health += 50; //REPLACE this with whatever you're gonna use to store the item in the inventory, 
+			//and the health increase line will go somewhere else for when the item is used. The values are just for testing puropses at the moment.
             startedFlashing = false;
             lookingAtObject = false;
             Destroy(selectedObject);
-            
         }
     }
 

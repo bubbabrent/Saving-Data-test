@@ -14,7 +14,7 @@ public class Load : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter(Collider p)
+	void OnTriggerEnter(Collider p) //will be a main menu click() for a "Load" button
 	{
 		if (p.gameObject.tag == "Player") 
 		{

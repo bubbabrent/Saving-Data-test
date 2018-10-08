@@ -11,7 +11,11 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager manage;
 
+	//All in-game player and game stats that need to be saved should be here
+	//----------
 	public int health;
+	//current inventory item?
+	//----------
 	public Text healthText;
 
 	void Awake()
@@ -30,16 +34,6 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	// Use this for initialization
-
-	void Start ()
-	{
-		//DontDestroyOnLoad (gameObject);
-
-		//health = 100;
-		//PlayerPrefs.GetInt("health");
-	}
-	
 	// Update is called once per frame
 	void Update () 
 	{
@@ -73,6 +67,8 @@ public class GameManager : MonoBehaviour
 
 	public void Load()
 	{
+		//So right now the game will simply either load, or NOT load when the button is clicked, based off of a possible existing file.
+		//This will be reworked later to check early on (probably in Awake) if there is a file or not. If not, then the load button will not show up on Main Menu
 		if (File.Exists (Application.persistentDataPath + "/playerInfo.dat")) 
 		{
 			BinaryFormatter bf = new BinaryFormatter ();
@@ -86,6 +82,7 @@ public class GameManager : MonoBehaviour
 	}
 }
 
+//all saved stats should be duplicated into here, so they can properly be saved. These specific versions are to grab the stats from in-game or file, and store/open them in a file/game
 [Serializable]
 class PlayerData
 {
